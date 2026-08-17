@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="340" viewBox="0 0 500 340" role="img" aria-label="LINKEDIN — NETWORK NODE">
+  <defs>
+    <pattern id="linkedin-grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#173421" stroke-width="1"/>
+      <circle cx="1" cy="1" r="1" fill="#315E39"/>
+    </pattern>
+    <radialGradient id="linkedin-panel" cx="50%" cy="42%" r="70%">
+      <stop offset="0" stop-color="#0A2012"/>
+      <stop offset="1" stop-color="#020B06"/>
+    </radialGradient>
+    <filter id="linkedin-glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <path d="M55 1H445L499 55V285L445 339H55L1 285V55Z" fill="url(#linkedin-panel)" stroke="#315E39" stroke-width="2"/>
+  <path d="M55 1H445L499 55V285L445 339H55L1 285V55Z" fill="url(#linkedin-grid)" opacity="0.34"/>
+  <path d="M70 1V24H31M430 1V24H469M70 339V316H31M430 339V316H469" fill="none" stroke="#4EE87A" stroke-width="1.5" opacity="0.62"/>
+  <text x="38" y="47" fill="#4EE87A" font-family="ui-monospace, SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="15" font-weight="700" letter-spacing="2.4">NETWORK NODE</text>
+  <text x="462" y="47" text-anchor="end" fill="#708876" font-family="ui-monospace, SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="11" font-weight="700" letter-spacing="1.5">EXT/GRAPH</text>
+  <path d="M250 105L153 145M250 105L347 145M153 145L182 223M347 145L318 223M182 223H318M153 145L318 223M347 145L182 223" fill="none" stroke="#708876" stroke-width="2" opacity="0.72"/>
+  <circle cx="153" cy="145" r="23" fill="#06140D" stroke="#9CAB79" stroke-width="2"/>
+  <circle cx="347" cy="145" r="23" fill="#06140D" stroke="#9CAB79" stroke-width="2"/>
+  <circle cx="182" cy="223" r="18" fill="#06140D" stroke="#708876" stroke-width="2"/>
+  <circle cx="318" cy="223" r="18" fill="#06140D" stroke="#708876" stroke-width="2"/>
+  <circle cx="250" cy="105" r="45" fill="#020B06" stroke="#4EE87A" stroke-width="2" filter="url(#linkedin-glow)"/>
+  <circle cx="250" cy="105" r="34" fill="none" stroke="#315E39" stroke-width="8"/>
+  <text x="250" y="116" text-anchor="middle" fill="#E5F2D8" font-family="ui-monospace, SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="28" font-weight="800">IN</text>
+  <circle cx="153" cy="145" r="5" fill="#4EE87A"/>
+  <circle cx="347" cy="145" r="5" fill="#4EE87A"/>
+  <circle cx="182" cy="223" r="4" fill="#B8C9AD"/>
+  <circle cx="318" cy="223" r="4" fill="#B8C9AD"/>
+  <path d="M78 264H170M330 264H422" fill="none" stroke="#315E39" stroke-width="2"/>
+  <text x="250" y="289" text-anchor="middle" fill="#E5F2D8" font-family="ui-monospace, SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="27" font-weight="800" letter-spacing="3">LINKEDIN</text>
+  <text x="250" y="320" text-anchor="middle" fill="#B8C9AD" font-family="ui-monospace, SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="12" font-weight="700" letter-spacing="2.2">PROFESSIONAL GRAPH · NODE LIVE</text>
+</svg>

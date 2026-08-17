@@ -72,8 +72,35 @@
     }
   ],
   "external": [
-    { "label": "PORTFOLIO", "url": "https://utkucaglar.com" },
-    { "label": "LINKEDIN", "url": "https://www.linkedin.com/in/utku-%C3%A7a%C4%9Flar-065420311" },
-    { "label": "EMAIL", "url": "mailto:utkucaglar00@gmail.com" }
+    {
+      "id": "portfolio",
+      "label": "PORTFOLIO",
+      "channel": "WEB UPLINK",
+      "detail": "PUBLIC INTERFACE",
+      "asset": "assets/io-portfolio-terminal.svg",
+      "publicAsset": "https://utkucaglar.github.io/utkucaglar/assets/io-portfolio-terminal.svg",
+      "url": "https://utkucaglar.com",
+      "alt": "Portfolio web uplink external I/O terminal."
+    },
+    {
+      "id": "linkedin",
+      "label": "LINKEDIN",
+      "channel": "NETWORK NODE",
+      "detail": "PROFESSIONAL GRAPH",
+      "asset": "assets/io-linkedin-network.svg",
+      "publicAsset": "https://utkucaglar.github.io/utkucaglar/assets/io-linkedin-network.svg",
+      "url": "https://www.linkedin.com/in/utku-%C3%A7a%C4%9Flar-065420311",
+      "alt": "LinkedIn professional network external I/O terminal."
+    },
+    {
+      "id": "email",
+      "label": "EMAIL",
+      "channel": "DIRECT CHANNEL",
+      "detail": "MESSAGE LINE",
+      "asset": "assets/io-email-channel.svg",
+      "publicAsset": "https://utkucaglar.github.io/utkucaglar/assets/io-email-channel.svg",
+      "url": "mailto:utkucaglar00@gmail.com",
+      "alt": "Email direct message external I/O terminal."
+    }
   ]
 }

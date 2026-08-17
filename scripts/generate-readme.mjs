@@ -10,9 +10,9 @@ const attr = (value) => String(value)
   .replaceAll('<', '&lt;')
   .replaceAll('>', '&gt;');
 
-await Promise.all(config.ports.map((port) => copyFile(
-  resolve(root, port.asset),
-  resolve(root, 'backplane/assets', basename(port.asset)),
+await Promise.all([...config.ports, ...config.external].map((item) => copyFile(
+  resolve(root, item.asset),
+  resolve(root, 'backplane/assets', basename(item.asset)),
 )));
 
 const portRows = [];
@@ -27,8 +27,8 @@ const ports = `<div align="center">
 </div>`;
 
 const external = config.external
-  .map((item) => `<a href="${attr(item.url)}"><samp>${attr(item.label)} ↗</samp></a>`)
-  .join('&nbsp;&nbsp;&nbsp;');
+  .map((item) => `<a href="${attr(item.url)}" data-channel="${attr(item.id)}"><img width="255" src="${attr(item.publicAsset)}" alt="${attr(item.alt)}"></a>`)
+  .join('\n');
 
 const readme = `<div align="center">
   <p><samp>${attr(config.identity.system)} &nbsp;·&nbsp; ${attr(config.identity.plate)} &nbsp;·&nbsp; ${attr(config.identity.status)}</samp></p>
@@ -45,8 +45,8 @@ ${ports}
 <br>
 
 <div align="center">
-  <p><samp>BACKPLANE / EXTERNAL I·O</samp></p>
-  <p>${external}</p>
+  <p><samp>EXTERNAL I/O · 03 ACTIVE CHANNELS</samp></p>
+  ${external}
 </div>
 `;
 

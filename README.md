@@ -21,6 +21,8 @@
 <br>
 
 <div align="center">
-  <p><samp>BACKPLANE / EXTERNAL I·O</samp></p>
-  <p><a href="https://utkucaglar.com"><samp>PORTFOLIO ↗</samp></a>&nbsp;&nbsp;&nbsp;<a href="https://www.linkedin.com/in/utku-%C3%A7a%C4%9Flar-065420311"><samp>LINKEDIN ↗</samp></a>&nbsp;&nbsp;&nbsp;<a href="mailto:utkucaglar00@gmail.com"><samp>EMAIL ↗</samp></a></p>
+  <p><samp>EXTERNAL I/O · 03 ACTIVE CHANNELS</samp></p>
+  <a href="https://utkucaglar.com" data-channel="portfolio"><img width="255" src="https://utkucaglar.github.io/utkucaglar/assets/io-portfolio-terminal.svg" alt="Portfolio web uplink external I/O terminal."></a>
+<a href="https://www.linkedin.com/in/utku-%C3%A7a%C4%9Flar-065420311" data-channel="linkedin"><img width="255" src="https://utkucaglar.github.io/utkucaglar/assets/io-linkedin-network.svg" alt="LinkedIn professional network external I/O terminal."></a>
+<a href="mailto:utkucaglar00@gmail.com" data-channel="email"><img width="255" src="https://utkucaglar.github.io/utkucaglar/assets/io-email-channel.svg" alt="Email direct message external I/O terminal."></a>
 </div>

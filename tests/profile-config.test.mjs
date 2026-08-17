@@ -39,9 +39,12 @@ test('manifest locks the six approved repository ports', async () => {
 
 test('manifest locks external I/O destinations', async () => {
   const config = await loadConfig();
-  assert.deepEqual(config.external, [
-    { label: 'PORTFOLIO', url: 'https://utkucaglar.com' },
-    { label: 'LINKEDIN', url: 'https://www.linkedin.com/in/utku-%C3%A7a%C4%9Flar-065420311' },
-    { label: 'EMAIL', url: 'mailto:utkucaglar00@gmail.com' },
-  ]);
+  assert.deepEqual(
+    config.external.map(({ label, url }) => ({ label, url })),
+    [
+      { label: 'PORTFOLIO', url: 'https://utkucaglar.com' },
+      { label: 'LINKEDIN', url: 'https://www.linkedin.com/in/utku-%C3%A7a%C4%9Flar-065420311' },
+      { label: 'EMAIL', url: 'mailto:utkucaglar00@gmail.com' },
+    ],
+  );
 });

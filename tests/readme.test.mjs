@@ -4,6 +4,26 @@ import { readFile } from 'node:fs/promises';
 
 const root = new URL('../', import.meta.url);
 const config = JSON.parse(await readFile(new URL('profile.config.json', root), 'utf8'));
+const externalChannels = [
+  {
+    id: 'portfolio',
+    url: 'https://utkucaglar.com',
+    publicAsset: 'https://utkucaglar.github.io/utkucaglar/assets/io-portfolio-terminal.svg',
+    alt: 'Portfolio web uplink external I/O terminal.',
+  },
+  {
+    id: 'linkedin',
+    url: 'https://www.linkedin.com/in/utku-%C3%A7a%C4%9Flar-065420311',
+    publicAsset: 'https://utkucaglar.github.io/utkucaglar/assets/io-linkedin-network.svg',
+    alt: 'LinkedIn professional network external I/O terminal.',
+  },
+  {
+    id: 'email',
+    url: 'mailto:utkucaglar00@gmail.com',
+    publicAsset: 'https://utkucaglar.github.io/utkucaglar/assets/io-email-channel.svg',
+    alt: 'Email direct message external I/O terminal.',
+  },
+];
 
 test('README contains the approved identity and one static Pages-hosted hero', async () => {
   const readme = await readFile(new URL('README.md', root), 'utf8');
@@ -40,9 +60,21 @@ test('README arranges six project modules in two columns and three rows', async 
   assert.equal((readme.match(/<\/a><br>/g) ?? []).length, 3);
 });
 
-test('README contains external I/O and excludes generic profile widgets', async () => {
+test('README renders three linked external I/O terminals instead of text links', async () => {
   const readme = await readFile(new URL('README.md', root), 'utf8');
-  for (const item of config.external) assert.ok(readme.includes(`href="${item.url}"`));
+  assert.ok(readme.includes('EXTERNAL I/O · 03 ACTIVE CHANNELS'));
+  for (const item of externalChannels) {
+    assert.ok(readme.includes(`href="${item.url}"`));
+    assert.ok(readme.includes(`data-channel="${item.id}"`));
+    assert.ok(readme.includes(`src="${item.publicAsset}"`));
+    assert.ok(readme.includes(`alt="${item.alt}"`));
+  }
+  assert.equal((readme.match(/<img width="255" src="https:\/\/utkucaglar\.github\.io\/utkucaglar\/assets\/io-[^"]+\.svg"/g) ?? []).length, 3);
+  assert.doesNotMatch(readme, /<samp>(PORTFOLIO|LINKEDIN|EMAIL) ↗<\/samp>/);
+});
+
+test('README excludes generic profile widgets', async () => {
+  const readme = await readFile(new URL('README.md', root), 'utf8');
   assert.doesNotMatch(readme, /github-readme-stats|troph|visitor|streak|wak(atime)?/i);
   assert.doesNotMatch(readme, /<script|<style/i);
 });
