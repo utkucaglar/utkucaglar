@@ -10,5 +10,23 @@ test('animated preview embeds one dim base and six feathered focus states', asyn
   assert.equal((svg.match(/data-route-port="\d{2}"/g) ?? []).length, 6);
   assert.equal((svg.match(/repeatCount="indefinite"/g) ?? []).length, 12);
   assert.match(svg, /prefers-reduced-motion: reduce/);
-  assert.doesNotMatch(svg, /<script|@import|https?:\/\//i);
+});
+
+test('standalone preview declares its SVG namespace without external references', async () => {
+  const svg = await readFile(new URL('../assets/project-backplane-cycle.svg', import.meta.url), 'utf8');
+  assert.match(svg, /^<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg"/);
+  const withoutSvgNamespace = svg.replace('xmlns="http://www.w3.org/2000/svg"', '');
+  assert.doesNotMatch(withoutSvgNamespace, /<script|@import|https?:\/\//i);
+});
+
+test('reduced motion shows a static port 01 state with no SMIL children', async () => {
+  const svg = await readFile(new URL('../assets/project-backplane-cycle.svg', import.meta.url), 'utf8');
+  assert.match(svg, /\.focus-layer, \.route-layer \{ display: none;/);
+  assert.match(svg, /\.static-focus-layer, \.static-route-layer \{ display: inline;/);
+
+  for (const role of ['focus', 'route']) {
+    const staticLayer = svg.match(new RegExp(`<g class="static-${role}-layer" data-static-${role}-port="01">[\\s\\S]*?<\\/g>`))?.[0];
+    assert.ok(staticLayer, `missing static reduced-motion ${role} layer`);
+    assert.doesNotMatch(staticLayer, /<animate\b/);
+  }
 });

@@ -47,14 +47,23 @@ const routeLayers = PORTS.map((port, index) => `
     <animate attributeName="opacity" dur="30s" values="${opacityValues(index)}" keyTimes="${keyTimes}" calcMode="discrete" repeatCount="indefinite"/>
   </g>`).join('');
 
-const svg = `<svg viewBox="0 0 1942 809" role="img" aria-labelledby="title description">
+const staticPort = PORTS[0];
+const staticLayers = `
+  <g class="static-focus-layer" data-static-focus-port="${staticPort.id}">
+    <use href="#source-image" mask="url(#focus-mask-${staticPort.id})"/>
+  </g>
+  <g class="static-route-layer" data-static-route-port="${staticPort.id}">
+    <path d="${staticPort.routePath}" fill="none" stroke="#caf36c" stroke-width="8" stroke-linecap="round"/>
+  </g>`;
+
+const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1942 809" role="img" aria-labelledby="title description">
   <title id="title">Interactive Project Backplane preview</title>
   <desc id="description">A six-port technical drawing preview that automatically focuses each linked project module.</desc>
   <style>
+    .static-focus-layer, .static-route-layer { display: none; }
     @media (prefers-reduced-motion: reduce) {
-      .focus-layer, .route-layer { display: none; animation: none !important; }
-      .focus-port-01, .route-port-01 { display: inline; opacity: 1 !important; }
-      .focus-layer animate, .route-layer animate { display: none; }
+      .focus-layer, .route-layer { display: none; }
+      .static-focus-layer, .static-route-layer { display: inline; }
     }
   </style>
   <defs>${filters}
@@ -62,7 +71,7 @@ ${masks}
     <image id="source-image" width="1942" height="809" href="${imageHref}"/>
   </defs>
   <use id="dim-base" href="#source-image" opacity="0.38"/>${focusLayers}
-${routeLayers}
+${routeLayers}${staticLayers}
 </svg>
 `;
 

@@ -1,11 +1,11 @@
-<svg viewBox="0 0 1942 809" role="img" aria-labelledby="title description">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1942 809" role="img" aria-labelledby="title description">
   <title id="title">Interactive Project Backplane preview</title>
   <desc id="description">A six-port technical drawing preview that automatically focuses each linked project module.</desc>
   <style>
+    .static-focus-layer, .static-route-layer { display: none; }
     @media (prefers-reduced-motion: reduce) {
-      .focus-layer, .route-layer { display: none; animation: none !important; }
-      .focus-port-01, .route-port-01 { display: inline; opacity: 1 !important; }
-      .focus-layer animate, .route-layer animate { display: none; }
+      .focus-layer, .route-layer { display: none; }
+      .static-focus-layer, .static-route-layer { display: inline; }
     }
   </style>
   <defs>
@@ -133,5 +133,11 @@
       <animate attributeName="stroke-dashoffset" dur="30s" values="120;120;120;120;120;120;0" keyTimes="0;0.166667;0.333333;0.5;0.666667;0.833333;1" calcMode="linear" repeatDur="indefinite"/>
     </path>
     <animate attributeName="opacity" dur="30s" values="0;0;0;0;0;1;0" keyTimes="0;0.166667;0.333333;0.5;0.666667;0.833333;1" calcMode="discrete" repeatCount="indefinite"/>
+  </g>
+  <g class="static-focus-layer" data-static-focus-port="01">
+    <use href="#source-image" mask="url(#focus-mask-01)"/>
+  </g>
+  <g class="static-route-layer" data-static-route-port="01">
+    <path d="M1000 430 C800 350 600 250 280 210" fill="none" stroke="#caf36c" stroke-width="8" stroke-linecap="round"/>
   </g>
 </svg>
