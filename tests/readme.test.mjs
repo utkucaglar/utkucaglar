@@ -5,19 +5,20 @@ import { readFile } from 'node:fs/promises';
 const root = new URL('../', import.meta.url);
 const config = JSON.parse(await readFile(new URL('profile.config.json', root), 'utf8'));
 
-test('README contains the approved identity and one Pages-hosted hero', async () => {
+test('README contains the approved identity and one static Pages-hosted hero', async () => {
   const readme = await readFile(new URL('README.md', root), 'utf8');
   assert.ok(readme.includes(config.identity.name));
   assert.ok(readme.includes(config.identity.role));
   assert.ok(readme.includes(`src="${config.hero.publicUrl}"`));
   assert.ok(readme.includes(`alt="${config.hero.alt}"`));
+  assert.doesNotMatch(readme, /project-backplane-cycle|automatic six-port focus sequence/i);
 });
 
 test('README hero opens the interactive backplane', async () => {
   const readme = await readFile(new URL('../README.md', import.meta.url), 'utf8');
   assert.match(readme, new RegExp(`<a href="${config.interactive.url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}">\\s*<img width="100%" src="${config.hero.publicUrl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`));
-  assert.equal(config.hero.file, 'assets/project-backplane-cycle.webp');
-  assert.equal(config.hero.sourceFile, 'assets/patent-assembly-greenprint-v2-six-port.webp');
+  assert.equal(config.hero.file, 'assets/patent-assembly-greenprint-v2-six-port.webp');
+  assert.equal(config.hero.publicUrl, 'https://utkucaglar.github.io/utkucaglar/assets/assembly.webp');
 });
 
 test('README contains exactly six linked repository cards including TreePipe', async () => {
@@ -32,11 +33,11 @@ test('README contains exactly six linked repository cards including TreePipe', a
   assert.equal((readme.match(/data-port="\d{2}"/g) ?? []).length, 6);
 });
 
-test('README arranges compact project modules in three desktop pairs', async () => {
+test('README arranges six project modules in three columns and two rows', async () => {
   const readme = await readFile(new URL('README.md', root), 'utf8');
   assert.ok(readme.includes('PROJECT BACKPLANE · 06 LINKED MODULES'));
-  assert.equal((readme.match(/<img width="410" src="\.\/assets\/port-\d{2}[^\"]+\.svg"/g) ?? []).length, 6);
-  assert.equal((readme.match(/<\/a><br>/g) ?? []).length, 3);
+  assert.equal((readme.match(/<img width="270" src="\.\/assets\/port-\d{2}[^\"]+\.svg"/g) ?? []).length, 6);
+  assert.equal((readme.match(/<\/a><br>/g) ?? []).length, 2);
 });
 
 test('README contains external I/O and excludes generic profile widgets', async () => {

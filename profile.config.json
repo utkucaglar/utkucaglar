@@ -7,10 +7,9 @@
     "status": "DRAWING ACTIVE"
   },
   "hero": {
-    "file": "assets/project-backplane-cycle.webp",
-    "publicUrl": "https://utkucaglar.github.io/utkucaglar/assets/project-backplane-cycle.webp",
-    "sourceFile": "assets/patent-assembly-greenprint-v2-six-port.webp",
-    "alt": "Animated green technical patent drawing with an automatic six-port focus sequence; open the linked interactive project backplane experience."
+    "file": "assets/patent-assembly-greenprint-v2-six-port.webp",
+    "publicUrl": "https://utkucaglar.github.io/utkucaglar/assets/assembly.webp",
+    "alt": "Static six-port green technical patent drawing; open the linked interactive project backplane experience."
   },
   "interactive": {
     "url": "https://utkucaglar.github.io/utkucaglar/",
