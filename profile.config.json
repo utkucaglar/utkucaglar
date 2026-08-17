@@ -6,6 +6,13 @@
     "plate": "PATENT ASSEMBLY",
     "status": "DRAWING ACTIVE"
   },
+  "contributions": {
+    "username": "utkucaglar",
+    "asset": "assets/contribution-matrix.svg",
+    "publicAsset": "https://utkucaglar.github.io/utkucaglar/assets/contribution-matrix.svg",
+    "url": "https://github.com/utkucaglar?tab=overview",
+    "alt": "Green technical contribution matrix for the last 365 days."
+  },
   "hero": {
     "file": "assets/patent-assembly-greenprint-v2-six-port.webp",
     "publicUrl": "https://utkucaglar.github.io/utkucaglar/assets/assembly.webp",

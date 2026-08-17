@@ -2,6 +2,7 @@
   "type": "module",
   "scripts": {
     "generate": "node scripts/generate-readme.mjs",
+    "generate:contributions": "node scripts/generate-contributions.mjs",
     "test": "node --test"
   }
 }

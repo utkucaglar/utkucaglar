@@ -25,6 +25,18 @@ const externalChannels = [
   },
 ];
 
+test('README places the contribution matrix before identity and hardware assembly', async () => {
+  const readme = await readFile(new URL('README.md', root), 'utf8');
+  const matrixIndex = readme.indexOf('data-panel="contributions"');
+  const identityIndex = readme.indexOf(config.identity.name);
+  const assemblyIndex = readme.indexOf(`src="${config.hero.publicUrl}"`);
+  assert.notEqual(matrixIndex, -1);
+  assert.ok(matrixIndex < identityIndex);
+  assert.ok(identityIndex < assemblyIndex);
+  assert.ok(readme.includes('src="https://utkucaglar.github.io/utkucaglar/assets/contribution-matrix.svg"'));
+  assert.ok(readme.includes('alt="Green technical contribution matrix for the last 365 days."'));
+});
+
 test('README contains the approved identity and one static Pages-hosted hero', async () => {
   const readme = await readFile(new URL('README.md', root), 'utf8');
   assert.ok(readme.includes(config.identity.name));
