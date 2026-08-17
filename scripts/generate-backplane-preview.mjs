@@ -1,78 +1,98 @@
-import { readFile, writeFile } from 'node:fs/promises';
-import { resolve } from 'node:path';
+import { mkdtemp, rm } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join, resolve } from 'node:path';
+import { spawn } from 'node:child_process';
+import ffmpegPath from 'ffmpeg-static';
+import sharp from 'sharp';
 import { PORTS } from '../backplane/ports.js';
 
 const root = resolve(import.meta.dirname, '..');
 const sourceFile = resolve(root, 'assets/patent-assembly-greenprint-v2-six-port.webp');
-const outputFile = resolve(root, 'assets/project-backplane-cycle.svg');
-const image = (await readFile(sourceFile)).toString('base64');
-const imageHref = `data:image/webp;base64,${image}`;
-const keyTimes = '0;0.166667;0.333333;0.5;0.666667;0.833333;1';
+const outputFile = resolve(root, 'assets/project-backplane-cycle.webp');
+const phasesPerPort = 3;
+const frameDelayMs = 1000;
+const frameWidth = 1440;
+const frameHeight = 600;
 
-const opacityValues = (index) => Array.from(
-  { length: PORTS.length + 1 },
-  (_, step) => step === index ? '1' : '0',
-).join(';');
-
-const dashValues = (index) => Array.from(
-  { length: PORTS.length + 1 },
-  (_, step) => step === index + 1 ? '0' : '120',
-).join(';');
-
-const filters = PORTS.map((port) => `
-    <filter id="feather-${port.id}" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="16"/>
-    </filter>`).join('');
-
-const masks = PORTS.map((port) => `
-    <mask id="focus-mask-${port.id}">
-      <rect width="1942" height="809" fill="black"/>
-      <g fill="white" filter="url(#feather-${port.id})">
-        <path d="${port.maskPath}"/>
-        <circle cx="${port.label.cx}" cy="${port.label.cy}" r="${port.label.r}"/>
-      </g>
-    </mask>`).join('');
-
-const focusLayers = PORTS.map((port, index) => `
-  <g class="focus-layer focus-port-${port.id}" data-focus-port="${port.id}" opacity="0">
-    <use href="#source-image" mask="url(#focus-mask-${port.id})"/>
-    <animate attributeName="opacity" dur="30s" values="${opacityValues(index)}" keyTimes="${keyTimes}" calcMode="discrete" repeatCount="indefinite"/>
-  </g>`).join('');
-
-const routeLayers = PORTS.map((port, index) => `
-  <g class="route-layer route-port-${port.id}" data-route-port="${port.id}" opacity="0">
-    <path d="${port.routePath}" fill="none" stroke="#caf36c" stroke-width="8" stroke-linecap="round" stroke-dasharray="120 120" stroke-dashoffset="120">
-      <animate attributeName="stroke-dashoffset" dur="30s" values="${dashValues(index)}" keyTimes="${keyTimes}" calcMode="linear" repeatDur="indefinite"/>
-    </path>
-    <animate attributeName="opacity" dur="30s" values="${opacityValues(index)}" keyTimes="${keyTimes}" calcMode="discrete" repeatCount="indefinite"/>
-  </g>`).join('');
-
-const staticPort = PORTS[0];
-const staticLayers = `
-  <g class="static-focus-layer" data-static-focus-port="${staticPort.id}">
-    <use href="#source-image" mask="url(#focus-mask-${staticPort.id})"/>
-  </g>
-  <g class="static-route-layer" data-static-route-port="${staticPort.id}">
-    <path d="${staticPort.routePath}" fill="none" stroke="#caf36c" stroke-width="8" stroke-linecap="round"/>
-  </g>`;
-
-const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1942 809" role="img" aria-labelledby="title description">
-  <title id="title">Interactive Project Backplane preview</title>
-  <desc id="description">A six-port technical drawing preview that automatically focuses each linked project module.</desc>
-  <style>
-    .static-focus-layer, .static-route-layer { display: none; }
-    @media (prefers-reduced-motion: reduce) {
-      .focus-layer, .route-layer { display: none; }
-      .static-focus-layer, .static-route-layer { display: inline; }
-    }
-  </style>
-  <defs>${filters}
-${masks}
-    <image id="source-image" width="1942" height="809" href="${imageHref}"/>
+const renderMask = (port) => Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${frameWidth}" height="${frameHeight}" viewBox="0 0 1942 809">
+  <defs>
+    <filter id="feather" x="-24%" y="-24%" width="148%" height="148%">
+      <feGaussianBlur stdDeviation="13"/>
+    </filter>
   </defs>
-  <use id="dim-base" href="#source-image" opacity="0.38"/>${focusLayers}
-${routeLayers}${staticLayers}
-</svg>
-`;
+  <g fill="white" filter="url(#feather)">
+    <path d="${port.maskPath}"/>
+    <circle cx="${port.label.cx}" cy="${port.label.cy}" r="${port.label.r}"/>
+  </g>
+</svg>`);
 
-await writeFile(outputFile, svg, 'utf8');
+const renderRoute = (port, phase) => Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${frameWidth}" height="${frameHeight}" viewBox="0 0 1942 809">
+  <defs>
+    <filter id="route-glow" x="-35%" y="-35%" width="170%" height="170%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <path d="${port.routePath}" fill="none" stroke="#59d77c" stroke-opacity="0.34" stroke-width="4" stroke-linecap="round"/>
+  <path d="${port.routePath}" fill="none" stroke="#ddff8a" stroke-width="7" stroke-linecap="round" stroke-dasharray="28 92" stroke-dashoffset="${-phase * 40}" filter="url(#route-glow)"/>
+</svg>`);
+
+const run = (command, args) => new Promise((resolveRun, reject) => {
+  const child = spawn(command, args, { stdio: ['ignore', 'ignore', 'pipe'] });
+  let errorOutput = '';
+  child.stderr.on('data', (chunk) => { errorOutput += chunk; });
+  child.on('error', reject);
+  child.on('close', (code) => {
+    if (code === 0) resolveRun();
+    else reject(new Error(`ffmpeg exited with ${code}: ${errorOutput}`));
+  });
+});
+
+const framesDirectory = await mkdtemp(join(tmpdir(), 'backplane-preview-'));
+
+try {
+  const dimBase = await sharp(sourceFile)
+    .resize(frameWidth, frameHeight)
+    .modulate({ brightness: 0.5, saturation: 0.72 })
+    .png()
+    .toBuffer();
+  const brightBase = await sharp(sourceFile)
+    .resize(frameWidth, frameHeight)
+    .modulate({ brightness: 1.08, saturation: 1.08 })
+    .png()
+    .toBuffer();
+
+  let frame = 0;
+  for (const port of PORTS) {
+    const mask = await sharp(renderMask(port)).png().toBuffer();
+    const focus = await sharp(brightBase)
+      .composite([{ input: mask, blend: 'dest-in' }])
+      .png()
+      .toBuffer();
+
+    for (let phase = 0; phase < phasesPerPort; phase += 1) {
+      const frameFile = join(framesDirectory, `frame-${String(frame).padStart(2, '0')}.png`);
+      const route = await sharp(renderRoute(port, phase)).png().toBuffer();
+      await sharp(dimBase)
+        .composite([{ input: focus }, { input: route }])
+        .png({ compressionLevel: 9, adaptiveFiltering: true })
+        .toFile(frameFile);
+      frame += 1;
+    }
+  }
+
+  await run(ffmpegPath, [
+    '-hide_banner',
+    '-loglevel', 'error',
+    '-y',
+    '-framerate', String(1000 / frameDelayMs),
+    '-i', join(framesDirectory, 'frame-%02d.png'),
+    '-c:v', 'libwebp_anim',
+    '-preset', 'drawing',
+    '-quality', '84',
+    '-loop', '0',
+    outputFile,
+  ]);
+} finally {
+  await rm(framesDirectory, { recursive: true, force: true });
+}

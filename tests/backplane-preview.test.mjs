@@ -1,32 +1,23 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
+import { readFile, stat } from 'node:fs/promises';
 
-test('animated preview embeds one dim base and six feathered focus states', async () => {
-  const svg = await readFile(new URL('../assets/project-backplane-cycle.svg', import.meta.url), 'utf8');
-  assert.match(svg, /viewBox="0 0 1942 809"/);
-  assert.equal((svg.match(/data:image\/webp;base64,/g) ?? []).length, 1);
-  assert.equal((svg.match(/data-focus-port="\d{2}"/g) ?? []).length, 6);
-  assert.equal((svg.match(/data-route-port="\d{2}"/g) ?? []).length, 6);
-  assert.equal((svg.match(/repeatCount="indefinite"/g) ?? []).length, 12);
-  assert.match(svg, /prefers-reduced-motion: reduce/);
+test('README preview is a GitHub-safe animated WebP with six readable focus holds', async () => {
+  const previewUrl = new URL('../assets/project-backplane-cycle.webp', import.meta.url);
+  const bytes = await readFile(previewUrl);
+  const metadata = await stat(previewUrl);
+
+  assert.equal(bytes.subarray(0, 4).toString('ascii'), 'RIFF');
+  assert.equal(bytes.subarray(8, 12).toString('ascii'), 'WEBP');
+  assert.ok(bytes.includes(Buffer.from('ANIM')), 'preview must be animated');
+  assert.equal(bytes.toString('latin1').match(/ANMF/g)?.length, 18);
+  assert.ok(metadata.size > 150_000, `preview is unexpectedly small: ${metadata.size}`);
+  assert.ok(metadata.size < 5_000_000, `preview exceeds GitHub-friendly budget: ${metadata.size}`);
 });
 
-test('standalone preview declares its SVG namespace without external references', async () => {
-  const svg = await readFile(new URL('../assets/project-backplane-cycle.svg', import.meta.url), 'utf8');
-  assert.match(svg, /^<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg"/);
-  const withoutSvgNamespace = svg.replace('xmlns="http://www.w3.org/2000/svg"', '');
-  assert.doesNotMatch(withoutSvgNamespace, /<script|@import|https?:\/\//i);
-});
-
-test('reduced motion shows a static port 01 state with no SMIL children', async () => {
-  const svg = await readFile(new URL('../assets/project-backplane-cycle.svg', import.meta.url), 'utf8');
-  assert.match(svg, /\.focus-layer, \.route-layer \{ display: none;/);
-  assert.match(svg, /\.static-focus-layer, \.static-route-layer \{ display: inline;/);
-
-  for (const role of ['focus', 'route']) {
-    const staticLayer = svg.match(new RegExp(`<g class="static-${role}-layer" data-static-${role}-port="01">[\\s\\S]*?<\\/g>`))?.[0];
-    assert.ok(staticLayer, `missing static reduced-motion ${role} layer`);
-    assert.doesNotMatch(staticLayer, /<animate\b/);
-  }
+test('preview generator derives three moving-route frames for every canonical port', async () => {
+  const generator = await readFile(new URL('../scripts/generate-backplane-preview.mjs', import.meta.url), 'utf8');
+  assert.match(generator, /const phasesPerPort = 3/);
+  assert.match(generator, /for \(const port of PORTS\)/);
+  assert.match(generator, /libwebp_anim/);
 });

@@ -4,7 +4,7 @@
   <p><samp>FULL-STACK · AI SYSTEMS · PRODUCT</samp></p>
 </div>
 
-<a href="https://utkucaglar.github.io/utkucaglar/"><img width="100%" src="./assets/project-backplane-cycle.svg" alt="Animated green technical patent drawing with an automatic six-port focus sequence; open the linked interactive project backplane experience."></a>
+<a href="https://utkucaglar.github.io/utkucaglar/"><img width="100%" src="./assets/project-backplane-cycle.webp" alt="Animated green technical patent drawing with an automatic six-port focus sequence; open the linked interactive project backplane experience."></a>
 
 <br>
 
