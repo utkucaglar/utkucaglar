@@ -1,0 +1,11 @@
+export const PORTS = [
+  { id: '01', role: 'PLATFORM BOARD', name: 'NFC_LINK', signals: ['TYPESCRIPT', 'REACT', 'SUPABASE'], url: 'https://github.com/utkucaglar/NFC_Link', hotspot: { x: 24.2, y: 8.3 }, label: { cx: 470, cy: 70, r: 58 }, maskPath: 'M45 145 L230 45 L410 85 L490 170 L470 270 L245 340 L45 255 Z', routePath: 'M1000 430 C800 350 600 250 280 210' },
+  { id: '02', role: 'COMPUTE ASSEMBLY', name: 'CS445_PROJECT', signals: ['NLP', 'REGRESSION', 'BERT'], url: 'https://github.com/utkucaglar/CS445-Project', hotspot: { x: 68.1, y: 10.8 }, label: { cx: 1325, cy: 90, r: 58 }, maskPath: 'M530 40 L1220 10 L1260 300 L1215 515 L1060 710 L705 700 L545 520 Z', routePath: 'M1000 430 C1090 350 1130 260 1070 190' },
+  { id: '03', role: 'PROTOCOL DRIVE', name: 'YOK_AKADEMIK_MCP', signals: ['MCP', 'SSE', 'AUTOMATION'], url: 'https://github.com/utkucaglar/YOK_Akademik_MCP', hotspot: { x: 21.5, y: 72.2 }, label: { cx: 420, cy: 575, r: 58 }, maskPath: 'M75 590 L315 540 L415 635 L365 718 L135 728 L75 670 Z', routePath: 'M1000 430 C750 520 540 620 270 650' },
+  { id: '04', role: 'COMMERCE MEMORY', name: 'PIXELVAULT', signals: ['NEXT.JS', 'POSTGRES', 'N8N'], url: 'https://github.com/utkucaglar/cs308-team9-ecommerce-app', hotspot: { x: 4.5, y: 43.7 }, label: { cx: 82, cy: 353, r: 58 }, maskPath: 'M80 380 L330 350 L425 425 L395 505 L135 535 L75 480 Z', routePath: 'M1000 430 C680 430 480 440 250 445' },
+  { id: '05', role: 'DIGITAL I/O', name: 'BATTLESHIP_FPGA', signals: ['VERILOG', 'FPGA', 'REALTIME'], url: 'https://github.com/utkucaglar/Battle_Ship_Game_FPGA', hotspot: { x: 78.4, y: 55.1 }, label: { cx: 1520, cy: 450, r: 58 }, maskPath: 'M1480 460 L1710 395 L1870 485 L1875 700 L1720 755 L1500 650 Z', routePath: 'M1000 430 C1250 460 1450 540 1680 575' },
+  { id: '06', role: 'PROCESS TREE', name: 'TREEPIPE_PROJECT', signals: ['C', 'FORK', 'EXECVP', 'PIPES'], url: 'https://github.com/utkucaglar/TreePipe-Project', hotspot: { x: 95.6, y: 10.5 }, label: { cx: 1850, cy: 95, r: 58 }, maskPath: 'M1440 80 L1830 45 L1900 140 L1860 330 L1620 360 L1430 245 Z', routePath: 'M1000 430 C1250 380 1490 250 1660 180' },
+];
+
+export const PORT_IDS = PORTS.map(({ id }) => id);
+export const getPort = (id) => PORTS.find((port) => port.id === id);
