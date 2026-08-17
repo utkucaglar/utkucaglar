@@ -1,0 +1,60 @@
+{
+  "identity": {
+    "name": "UTKU ÇAĞLAR",
+    "role": "FULL-STACK · AI SYSTEMS · PRODUCT",
+    "system": "UÇ/GREENPRINT",
+    "plate": "PATENT ASSEMBLY",
+    "status": "DRAWING ACTIVE"
+  },
+  "hero": {
+    "file": "assets/patent-assembly-greenprint.webp",
+    "alt": "Green technical patent drawing of an exploded graphics card assembly surrounded by a motherboard, memory, storage, cooling, power hardware, and five numbered repository markers."
+  },
+  "ports": [
+    {
+      "id": "01",
+      "role": "PLATFORM BOARD",
+      "name": "NFC_LINK",
+      "signals": ["TYPESCRIPT", "REACT", "SUPABASE"],
+      "url": "https://github.com/utkucaglar/NFC_Link",
+      "asset": "assets/port-01-platform-board.svg"
+    },
+    {
+      "id": "02",
+      "role": "COMPUTE ASSEMBLY",
+      "name": "CS445_PROJECT",
+      "signals": ["NLP", "REGRESSION", "BERT"],
+      "url": "https://github.com/utkucaglar/CS445-Project",
+      "asset": "assets/port-02-compute-assembly.svg"
+    },
+    {
+      "id": "03",
+      "role": "PROTOCOL DRIVE",
+      "name": "YOK_AKADEMIK_MCP",
+      "signals": ["MCP", "SSE", "AUTOMATION"],
+      "url": "https://github.com/utkucaglar/YOK_Akademik_MCP",
+      "asset": "assets/port-03-protocol-drive.svg"
+    },
+    {
+      "id": "04",
+      "role": "COMMERCE MEMORY",
+      "name": "PIXELVAULT",
+      "signals": ["NEXT.JS", "POSTGRES", "N8N"],
+      "url": "https://github.com/utkucaglar/cs308-team9-ecommerce-app",
+      "asset": "assets/port-04-commerce-memory.svg"
+    },
+    {
+      "id": "05",
+      "role": "DIGITAL I/O",
+      "name": "BATTLESHIP_FPGA",
+      "signals": ["VERILOG", "FPGA", "REALTIME"],
+      "url": "https://github.com/utkucaglar/Battle_Ship_Game_FPGA",
+      "asset": "assets/port-05-digital-io.svg"
+    }
+  ],
+  "external": [
+    { "label": "PORTFOLIO", "url": "https://utkucaglar.com" },
+    { "label": "LINKEDIN", "url": "https://www.linkedin.com/in/utku-%C3%A7a%C4%9Flar-065420311" },
+    { "label": "EMAIL", "url": "mailto:utkucaglar00@gmail.com" }
+  ]
+}
