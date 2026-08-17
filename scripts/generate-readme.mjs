@@ -16,8 +16,8 @@ await Promise.all(config.ports.map((port) => copyFile(
 )));
 
 const portRows = [];
-for (let index = 0; index < config.ports.length; index += 3) {
-  const row = config.ports.slice(index, index + 3).map((port) => `<a href="${attr(port.url)}" data-port="${attr(port.id)}"><img width="270" src="${attr(port.publicAsset)}" alt="${attr(`${port.role}: ${port.name} — ${port.signals.join(', ')}`)}"></a>`).join('\n');
+for (let index = 0; index < config.ports.length; index += 2) {
+  const row = config.ports.slice(index, index + 2).map((port) => `<a href="${attr(port.url)}" data-port="${attr(port.id)}"><img width="410" src="${attr(port.publicAsset)}" alt="${attr(`${port.role}: ${port.name} — ${port.signals.join(', ')}`)}"></a>`).join('\n');
   portRows.push(`${row}<br>`);
 }
 
