@@ -1,21 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="210" viewBox="0 0 1200 210" role="img" aria-label="PROTOCOL DRIVE: YOK_AKADEMIK_MCP">
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="170" viewBox="0 0 800 170" role="img" aria-label="PROTOCOL DRIVE: YOK_AKADEMIK_MCP">
   <defs>
-    <pattern id="grid-03" width="20" height="20" patternUnits="userSpaceOnUse">
-      <path d="M20 0H0V20" fill="none" stroke="#16351F" stroke-width="1"/>
+    <pattern id="grid-03" width="16" height="16" patternUnits="userSpaceOnUse">
+      <path d="M16 0H0V16" fill="none" stroke="#16351F" stroke-width="1"/>
     </pattern>
     <linearGradient id="panel-03" x1="0" x2="1">
       <stop offset="0" stop-color="#06130B"/>
       <stop offset="1" stop-color="#020B06"/>
     </linearGradient>
+    <linearGradient id="trace-03" x1="0" x2="1">
+      <stop offset="0" stop-color="#63D56F"/>
+      <stop offset="1" stop-color="#A3F4AA" stop-opacity="0.12"/>
+    </linearGradient>
   </defs>
-  <rect x="1" y="1" width="1198" height="208" rx="18" fill="url(#panel-03)" stroke="#315E39" stroke-width="2"/>
-  <rect x="1" y="1" width="1198" height="208" rx="18" fill="url(#grid-03)" opacity="0.52"/>
-  <path d="M94 0V52M94 158V210M0 105H42M146 105H250" fill="none" stroke="#63D56F" stroke-width="2" opacity="0.7"/>
-  <circle cx="94" cy="105" r="46" fill="#020B06" stroke="#A3F4AA" stroke-width="2"/>
-  <circle cx="94" cy="105" r="56" fill="none" stroke="#315E39" stroke-width="1"/>
-  <text x="94" y="115" text-anchor="middle" fill="#A3F4AA" font-family="ui-monospace, SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="30" font-weight="800">03</text>
-  <text x="180" y="57" fill="#63D56F" font-family="ui-monospace, SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="28" font-weight="700" letter-spacing="3">PROTOCOL DRIVE</text>
-  <text x="180" y="117" fill="#E2E9DE" font-family="ui-monospace, SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="42" font-weight="800" letter-spacing="2">YOK_AKADEMIK_MCP</text>
-  <text x="180" y="170" fill="#7D9080" font-family="ui-monospace, SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="28" font-weight="700" letter-spacing="2">MCP   ·   SSE   ·   AUTOMATION</text>
-  <path d="M1120 105h38m-14-14 14 14-14 14" fill="none" stroke="#A3F4AA" stroke-width="3"/>
+  <rect x="1" y="1" width="798" height="168" rx="14" fill="url(#panel-03)" stroke="#315E39" stroke-width="2"/>
+  <rect x="1" y="1" width="798" height="168" rx="14" fill="url(#grid-03)" opacity="0.44"/>
+  <path d="M102 0V48M102 122V170M0 85H20M84 85H102" fill="none" stroke="#63D56F" stroke-width="2" opacity="0.68"/>
+  <path d="M690 18H778V42M118 149H320" fill="none" stroke="url(#trace-03)" stroke-width="1.5"/>
+  <circle cx="52" cy="85" r="25" fill="#020B06" stroke="#A3F4AA" stroke-width="2"/>
+  <circle cx="52" cy="85" r="33" fill="none" stroke="#315E39" stroke-width="1"/>
+  <text x="52" y="92" text-anchor="middle" fill="#A3F4AA" font-family="ui-monospace, SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="19" font-weight="800">03</text>
+  <text x="118" y="39" fill="#63D56F" font-family="ui-monospace, SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="17" font-weight="700" letter-spacing="2.2">PROTOCOL DRIVE</text>
+  <text x="118" y="87" fill="#E2E9DE" font-family="ui-monospace, SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="29" font-weight="800" letter-spacing="1.4">YOK_AKADEMIK_MCP</text>
+  <text x="118" y="127" fill="#7D9080" font-family="ui-monospace, SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="16" font-weight="700" letter-spacing="1.4">MCP   ·   SSE   ·   AUTOMATION</text>
+  <text x="778" y="151" text-anchor="end" fill="#45684C" font-family="ui-monospace, SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="10" font-weight="700" letter-spacing="1.4">PORT_03 / READY</text>
 </svg>

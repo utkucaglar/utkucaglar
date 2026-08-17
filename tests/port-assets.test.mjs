@@ -8,7 +8,7 @@ const config = JSON.parse(await readFile(new URL('profile.config.json', root), '
 for (const port of config.ports) {
   test(`${port.id} card is complete and self-contained`, async () => {
     const svg = await readFile(new URL(port.asset, root), 'utf8');
-    assert.match(svg, /<svg[^>]+viewBox="0 0 1200 210"/);
+    assert.match(svg, /<svg[^>]+viewBox="0 0 800 170"/);
     assert.match(svg, new RegExp(`>${port.id}<`));
     assert.ok(svg.includes(port.role));
     assert.ok(svg.includes(port.name));

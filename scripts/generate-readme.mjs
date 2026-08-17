@@ -10,9 +10,16 @@ const attr = (value) => String(value)
   .replaceAll('<', '&lt;')
   .replaceAll('>', '&gt;');
 
-const ports = config.ports.map((port) => `<a href="${attr(port.url)}" data-port="${attr(port.id)}">
-  <img width="100%" src="./${attr(port.asset)}" alt="${attr(`${port.role}: ${port.name} — ${port.signals.join(', ')}`)}">
-</a>`).join('\n\n');
+const portRows = [];
+for (let index = 0; index < config.ports.length; index += 2) {
+  const row = config.ports.slice(index, index + 2).map((port) => `<a href="${attr(port.url)}" data-port="${attr(port.id)}"><img width="410" src="./${attr(port.asset)}" alt="${attr(`${port.role}: ${port.name} — ${port.signals.join(', ')}`)}"></a>`).join('\n');
+  portRows.push(`${row}<br>`);
+}
+
+const ports = `<div align="center">
+  <p><samp>PROJECT BACKPLANE · 06 LINKED MODULES</samp></p>
+  ${portRows.join('\n  ')}
+</div>`;
 
 const external = config.external
   .map((item) => `<a href="${attr(item.url)}"><samp>${attr(item.label)} ↗</samp></a>`)
