@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
+import { PORTS } from '../backplane/ports.js';
 
 const pageUrl = new URL('../backplane/index.html', import.meta.url);
 
@@ -25,6 +26,35 @@ test('page port targets are unique and cover the six canonical IDs', async () =>
   assert.deepEqual(idsFor('data-select-port'), expected);
   assert.deepEqual(idsFor('data-port-layer'), expected);
   assert.deepEqual(idsFor('data-port-route'), expected);
+});
+
+test('page drawing geometry stays synchronized with the canonical port registry', async () => {
+  const html = await readFile(pageUrl, 'utf8');
+  const masks = new Map(
+    [...html.matchAll(/<clipPath id="port-mask-(\d{2})"><path d="([^"]+)"\/><circle cx="([^"]+)" cy="([^"]+)" r="([^"]+)"\/><\/clipPath>/g)]
+      .map(([, id, maskPath, cx, cy, r]) => [id, { maskPath, label: { cx: Number(cx), cy: Number(cy), r: Number(r) } }]),
+  );
+  const routes = new Map(
+    [...html.matchAll(/<path\b(?=[^>]*data-port-route="(\d{2})")(?=[^>]*d="([^"]+)")[^>]*\/>/g)]
+      .map(([, id, routePath]) => [id, routePath]),
+  );
+  const hotspots = new Map(
+    [...html.matchAll(/<button\b[^>]*data-select-port="\d{2}"[^>]*>/g)].map(([element]) => {
+      const id = element.match(/data-select-port="(\d{2})"/)?.[1];
+      const coordinates = element.match(/--hotspot-x:\s*([\d.]+)%;\s*--hotspot-y:\s*([\d.]+)%/);
+      return [id, { x: Number(coordinates?.[1]), y: Number(coordinates?.[2]) }];
+    }),
+  );
+
+  assert.equal(masks.size, PORTS.length, 'each canonical port needs one SVG mask');
+  assert.equal(routes.size, PORTS.length, 'each canonical port needs one SVG route');
+  assert.equal(hotspots.size, PORTS.length, 'each canonical port needs one interactive hotspot');
+
+  for (const { id, maskPath, label, routePath, hotspot } of PORTS) {
+    assert.deepEqual(masks.get(id), { maskPath, label }, `mask geometry for port ${id}`);
+    assert.equal(routes.get(id), routePath, `route geometry for port ${id}`);
+    assert.deepEqual(hotspots.get(id), hotspot, `hotspot geometry for port ${id}`);
+  }
 });
 
 test('page uses local stylesheet, module, and assembly image resources', async () => {
