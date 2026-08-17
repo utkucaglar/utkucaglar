@@ -7,8 +7,13 @@
     "status": "DRAWING ACTIVE"
   },
   "hero": {
-    "file": "assets/patent-assembly-greenprint-v2-six-port.webp",
-    "alt": "Green technical patent drawing of an exploded graphics card assembly surrounded by a motherboard, memory, storage, cooling, power hardware, and six numbered repository markers."
+    "file": "assets/project-backplane-cycle.svg",
+    "sourceFile": "assets/patent-assembly-greenprint-v2-six-port.webp",
+    "alt": "Animated green technical patent drawing with an automatic six-port focus sequence; open the linked interactive project backplane experience."
+  },
+  "interactive": {
+    "url": "https://utkucaglar.github.io/utkucaglar/",
+    "label": "OPEN INTERACTIVE PROJECT BACKPLANE"
   },
   "ports": [
     {

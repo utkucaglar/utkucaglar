@@ -31,7 +31,7 @@ const readme = `<div align="center">
   <p><samp>${attr(config.identity.role)}</samp></p>
 </div>
 
-<img width="100%" src="./${attr(config.hero.file)}" alt="${attr(config.hero.alt)}">
+<a href="${attr(config.interactive.url)}"><img width="100%" src="./${attr(config.hero.file)}" alt="${attr(config.hero.alt)}"></a>
 
 <br>
 

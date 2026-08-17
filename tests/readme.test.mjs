@@ -13,6 +13,13 @@ test('README contains the approved identity and one local hero', async () => {
   assert.ok(readme.includes(`alt="${config.hero.alt}"`));
 });
 
+test('README hero opens the interactive backplane', async () => {
+  const readme = await readFile(new URL('../README.md', import.meta.url), 'utf8');
+  assert.match(readme, new RegExp(`<a href="${config.interactive.url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}">\\s*<img width="100%" src="\\./${config.hero.file}`));
+  assert.equal(config.hero.file, 'assets/project-backplane-cycle.svg');
+  assert.equal(config.hero.sourceFile, 'assets/patent-assembly-greenprint-v2-six-port.webp');
+});
+
 test('README contains exactly six linked repository cards including TreePipe', async () => {
   const readme = await readFile(new URL('README.md', root), 'utf8');
   for (const port of config.ports) {

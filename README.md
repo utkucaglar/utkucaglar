@@ -4,7 +4,7 @@
   <p><samp>FULL-STACK · AI SYSTEMS · PRODUCT</samp></p>
 </div>
 
-<img width="100%" src="./assets/patent-assembly-greenprint-v2-six-port.webp" alt="Green technical patent drawing of an exploded graphics card assembly surrounded by a motherboard, memory, storage, cooling, power hardware, and six numbered repository markers.">
+<a href="https://utkucaglar.github.io/utkucaglar/"><img width="100%" src="./assets/project-backplane-cycle.svg" alt="Animated green technical patent drawing with an automatic six-port focus sequence; open the linked interactive project backplane experience."></a>
 
 <br>
 
