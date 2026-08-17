@@ -1,5 +1,5 @@
-import { readFile, writeFile } from 'node:fs/promises';
-import { resolve } from 'node:path';
+import { copyFile, readFile, writeFile } from 'node:fs/promises';
+import { basename, resolve } from 'node:path';
 
 const root = resolve(import.meta.dirname, '..');
 const config = JSON.parse(await readFile(resolve(root, 'profile.config.json'), 'utf8'));
@@ -10,9 +10,14 @@ const attr = (value) => String(value)
   .replaceAll('<', '&lt;')
   .replaceAll('>', '&gt;');
 
+await Promise.all(config.ports.map((port) => copyFile(
+  resolve(root, port.asset),
+  resolve(root, 'backplane/assets', basename(port.asset)),
+)));
+
 const portRows = [];
 for (let index = 0; index < config.ports.length; index += 3) {
-  const row = config.ports.slice(index, index + 3).map((port) => `<a href="${attr(port.url)}" data-port="${attr(port.id)}"><img width="270" src="./${attr(port.asset)}" alt="${attr(`${port.role}: ${port.name} — ${port.signals.join(', ')}`)}"></a>`).join('\n');
+  const row = config.ports.slice(index, index + 3).map((port) => `<a href="${attr(port.url)}" data-port="${attr(port.id)}"><img width="270" src="${attr(port.publicAsset)}" alt="${attr(`${port.role}: ${port.name} — ${port.signals.join(', ')}`)}"></a>`).join('\n');
   portRows.push(`${row}<br>`);
 }
 

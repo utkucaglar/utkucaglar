@@ -22,7 +22,8 @@
       "name": "NFC_LINK",
       "signals": ["TYPESCRIPT", "REACT", "SUPABASE"],
       "url": "https://github.com/utkucaglar/NFC_Link",
-      "asset": "assets/port-01-platform-board.svg"
+      "asset": "assets/port-01-platform-board.svg",
+      "publicAsset": "https://utkucaglar.github.io/utkucaglar/assets/port-01-platform-board.svg"
     },
     {
       "id": "02",
@@ -30,7 +31,8 @@
       "name": "CS445_PROJECT",
       "signals": ["NLP", "REGRESSION", "BERT"],
       "url": "https://github.com/utkucaglar/CS445-Project",
-      "asset": "assets/port-02-compute-assembly.svg"
+      "asset": "assets/port-02-compute-assembly.svg",
+      "publicAsset": "https://utkucaglar.github.io/utkucaglar/assets/port-02-compute-assembly.svg"
     },
     {
       "id": "03",
@@ -38,7 +40,8 @@
       "name": "YOK_AKADEMIK_MCP",
       "signals": ["MCP", "SSE", "AUTOMATION"],
       "url": "https://github.com/utkucaglar/YOK_Akademik_MCP",
-      "asset": "assets/port-03-protocol-drive.svg"
+      "asset": "assets/port-03-protocol-drive.svg",
+      "publicAsset": "https://utkucaglar.github.io/utkucaglar/assets/port-03-protocol-drive.svg"
     },
     {
       "id": "04",
@@ -46,7 +49,8 @@
       "name": "PIXELVAULT",
       "signals": ["NEXT.JS", "POSTGRES", "N8N"],
       "url": "https://github.com/utkucaglar/cs308-team9-ecommerce-app",
-      "asset": "assets/port-04-commerce-memory.svg"
+      "asset": "assets/port-04-commerce-memory.svg",
+      "publicAsset": "https://utkucaglar.github.io/utkucaglar/assets/port-04-commerce-memory.svg"
     },
     {
       "id": "05",
@@ -54,7 +58,8 @@
       "name": "BATTLESHIP_FPGA",
       "signals": ["VERILOG", "FPGA", "REALTIME"],
       "url": "https://github.com/utkucaglar/Battle_Ship_Game_FPGA",
-      "asset": "assets/port-05-digital-io.svg"
+      "asset": "assets/port-05-digital-io.svg",
+      "publicAsset": "https://utkucaglar.github.io/utkucaglar/assets/port-05-digital-io.svg"
     },
     {
       "id": "06",
@@ -62,7 +67,8 @@
       "name": "TREEPIPE_PROJECT",
       "signals": ["C", "FORK", "EXECVP", "PIPES"],
       "url": "https://github.com/utkucaglar/TreePipe-Project",
-      "asset": "assets/port-06-process-tree.svg"
+      "asset": "assets/port-06-process-tree.svg",
+      "publicAsset": "https://utkucaglar.github.io/utkucaglar/assets/port-06-process-tree.svg"
     }
   ],
   "external": [

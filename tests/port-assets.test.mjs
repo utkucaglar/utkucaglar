@@ -6,8 +6,9 @@ const root = new URL('../', import.meta.url);
 const config = JSON.parse(await readFile(new URL('profile.config.json', root), 'utf8'));
 
 for (const port of config.ports) {
-  test(`${port.id} card is complete and self-contained`, async () => {
-    const svg = await readFile(new URL(port.asset, root), 'utf8');
+  test(`${port.id} card is complete, self-contained, and deployed to Pages`, async () => {
+    const sourceUrl = new URL(port.asset, root);
+    const svg = await readFile(sourceUrl, 'utf8');
     assert.match(svg, /<svg[^>]+viewBox="0 0 800 170"/);
     assert.match(svg, new RegExp(`>${port.id}<`));
     assert.ok(svg.includes(port.role));
@@ -16,5 +17,8 @@ for (const port of config.ports) {
     const contentWithoutNamespace = svg.replace('http://www.w3.org/2000/svg', '');
     assert.doesNotMatch(contentWithoutNamespace, /<script|@import|https?:\/\/|xlink:href/i);
     assert.ok(Buffer.byteLength(svg) < 25_000);
+    assert.equal(port.publicAsset, `https://utkucaglar.github.io/utkucaglar/assets/${port.asset.split('/').at(-1)}`);
+    const deployed = await readFile(new URL(`backplane/assets/${port.asset.split('/').at(-1)}`, root));
+    assert.deepEqual(deployed, await readFile(sourceUrl));
   });
 }

@@ -25,7 +25,7 @@ test('README contains exactly six linked repository cards including TreePipe', a
   const readme = await readFile(new URL('README.md', root), 'utf8');
   for (const port of config.ports) {
     assert.ok(readme.includes(`href="${port.url}"`));
-    assert.ok(readme.includes(`src="./${port.asset}"`));
+    assert.ok(readme.includes(`src="${port.publicAsset}"`));
     assert.ok(readme.includes(`${port.role}: ${port.name} — ${port.signals.join(', ')}`));
   }
   assert.ok(readme.includes('href="https://github.com/utkucaglar/TreePipe-Project"'));
@@ -36,7 +36,7 @@ test('README contains exactly six linked repository cards including TreePipe', a
 test('README arranges six project modules in three columns and two rows', async () => {
   const readme = await readFile(new URL('README.md', root), 'utf8');
   assert.ok(readme.includes('PROJECT BACKPLANE · 06 LINKED MODULES'));
-  assert.equal((readme.match(/<img width="270" src="\.\/assets\/port-\d{2}[^\"]+\.svg"/g) ?? []).length, 6);
+  assert.equal((readme.match(/<img width="270" src="https:\/\/utkucaglar\.github\.io\/utkucaglar\/assets\/port-\d{2}[^\"]+\.svg"/g) ?? []).length, 6);
   assert.equal((readme.match(/<\/a><br>/g) ?? []).length, 2);
 });
 

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="170" viewBox="0 0 800 170" role="img" aria-label="COMPUTE ASSEMBLY: CS445_PROJECT">
+  <defs>
+    <pattern id="grid-02" width="16" height="16" patternUnits="userSpaceOnUse">
+      <path d="M16 0H0V16" fill="none" stroke="#16351F" stroke-width="1"/>
+    </pattern>
+    <linearGradient id="panel-02" x1="0" x2="1">
+      <stop offset="0" stop-color="#06130B"/>
+      <stop offset="1" stop-color="#020B06"/>
+    </linearGradient>
+    <linearGradient id="trace-02" x1="0" x2="1">
+      <stop offset="0" stop-color="#63D56F"/>
+      <stop offset="1" stop-color="#A3F4AA" stop-opacity="0.12"/>
+    </linearGradient>
+  </defs>
+  <rect x="1" y="1" width="798" height="168" rx="14" fill="url(#panel-02)" stroke="#315E39" stroke-width="2"/>
+  <rect x="1" y="1" width="798" height="168" rx="14" fill="url(#grid-02)" opacity="0.44"/>
+  <path d="M102 0V48M102 122V170M0 85H20M84 85H102" fill="none" stroke="#63D56F" stroke-width="2" opacity="0.68"/>
+  <path d="M690 18H778V42M118 149H320" fill="none" stroke="url(#trace-02)" stroke-width="1.5"/>
+  <circle cx="52" cy="85" r="25" fill="#020B06" stroke="#A3F4AA" stroke-width="2"/>
+  <circle cx="52" cy="85" r="33" fill="none" stroke="#315E39" stroke-width="1"/>
+  <text x="52" y="92" text-anchor="middle" fill="#A3F4AA" font-family="ui-monospace, SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="19" font-weight="800">02</text>
+  <text x="118" y="39" fill="#63D56F" font-family="ui-monospace, SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="17" font-weight="700" letter-spacing="2.2">COMPUTE ASSEMBLY</text>
+  <text x="118" y="87" fill="#E2E9DE" font-family="ui-monospace, SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="29" font-weight="800" letter-spacing="1.4">CS445_PROJECT</text>
+  <text x="118" y="127" fill="#7D9080" font-family="ui-monospace, SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="16" font-weight="700" letter-spacing="1.4">NLP   ·   REGRESSION   ·   BERT</text>
+  <text x="778" y="151" text-anchor="end" fill="#45684C" font-family="ui-monospace, SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="10" font-weight="700" letter-spacing="1.4">PORT_02 / READY</text>
+</svg>
