@@ -4,7 +4,7 @@
   <p><samp>FULL-STACK · AI SYSTEMS · PRODUCT</samp></p>
 </div>
 
-<img width="100%" src="./assets/patent-assembly-greenprint.webp" alt="Green technical patent drawing of an exploded graphics card assembly surrounded by a motherboard, memory, storage, cooling, power hardware, and five numbered repository markers.">
+<img width="100%" src="./assets/patent-assembly-greenprint-v2-six-port.webp" alt="Green technical patent drawing of an exploded graphics card assembly surrounded by a motherboard, memory, storage, cooling, power hardware, and six numbered repository markers.">
 
 <br>
 
@@ -26,6 +26,10 @@
 
 <a href="https://github.com/utkucaglar/Battle_Ship_Game_FPGA" data-port="05">
   <img width="100%" src="./assets/port-05-digital-io.svg" alt="DIGITAL I/O: BATTLESHIP_FPGA — VERILOG, FPGA, REALTIME">
+</a>
+
+<a href="https://github.com/utkucaglar/TreePipe-Project" data-port="06">
+  <img width="100%" src="./assets/port-06-process-tree.svg" alt="PROCESS TREE: TREEPIPE_PROJECT — C, FORK, EXECVP, PIPES">
 </a>
 
 <br>

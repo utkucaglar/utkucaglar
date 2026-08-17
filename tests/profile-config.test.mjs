@@ -8,6 +8,7 @@ const expectedPorts = [
   ['03', 'PROTOCOL DRIVE', 'YOK_AKADEMIK_MCP', ['MCP', 'SSE', 'AUTOMATION'], 'https://github.com/utkucaglar/YOK_Akademik_MCP'],
   ['04', 'COMMERCE MEMORY', 'PIXELVAULT', ['NEXT.JS', 'POSTGRES', 'N8N'], 'https://github.com/utkucaglar/cs308-team9-ecommerce-app'],
   ['05', 'DIGITAL I/O', 'BATTLESHIP_FPGA', ['VERILOG', 'FPGA', 'REALTIME'], 'https://github.com/utkucaglar/Battle_Ship_Game_FPGA'],
+  ['06', 'PROCESS TREE', 'TREEPIPE_PROJECT', ['C', 'FORK', 'EXECVP', 'PIPES'], 'https://github.com/utkucaglar/TreePipe-Project'],
 ];
 
 async function loadConfig() {
@@ -25,15 +26,15 @@ test('manifest locks the approved system identity', async () => {
   });
 });
 
-test('manifest locks the five approved repository ports', async () => {
+test('manifest locks the six approved repository ports', async () => {
   const config = await loadConfig();
-  assert.equal(config.ports.length, 5);
+  assert.equal(config.ports.length, 6);
   assert.deepEqual(
     config.ports.map(({ id, role, name, signals, url }) => [id, role, name, signals, url]),
     expectedPorts,
   );
-  assert.equal(new Set(config.ports.map(({ id }) => id)).size, 5);
-  assert.equal(new Set(config.ports.map(({ url }) => url)).size, 5);
+  assert.equal(new Set(config.ports.map(({ id }) => id)).size, 6);
+  assert.equal(new Set(config.ports.map(({ url }) => url)).size, 6);
 });
 
 test('manifest locks external I/O destinations', async () => {

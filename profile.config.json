@@ -7,8 +7,8 @@
     "status": "DRAWING ACTIVE"
   },
   "hero": {
-    "file": "assets/patent-assembly-greenprint.webp",
-    "alt": "Green technical patent drawing of an exploded graphics card assembly surrounded by a motherboard, memory, storage, cooling, power hardware, and five numbered repository markers."
+    "file": "assets/patent-assembly-greenprint-v2-six-port.webp",
+    "alt": "Green technical patent drawing of an exploded graphics card assembly surrounded by a motherboard, memory, storage, cooling, power hardware, and six numbered repository markers."
   },
   "ports": [
     {
@@ -50,6 +50,14 @@
       "signals": ["VERILOG", "FPGA", "REALTIME"],
       "url": "https://github.com/utkucaglar/Battle_Ship_Game_FPGA",
       "asset": "assets/port-05-digital-io.svg"
+    },
+    {
+      "id": "06",
+      "role": "PROCESS TREE",
+      "name": "TREEPIPE_PROJECT",
+      "signals": ["C", "FORK", "EXECVP", "PIPES"],
+      "url": "https://github.com/utkucaglar/TreePipe-Project",
+      "asset": "assets/port-06-process-tree.svg"
     }
   ],
   "external": [

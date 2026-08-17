@@ -13,14 +13,16 @@ test('README contains the approved identity and one local hero', async () => {
   assert.ok(readme.includes(`alt="${config.hero.alt}"`));
 });
 
-test('README contains exactly five linked repository cards', async () => {
+test('README contains exactly six linked repository cards including TreePipe', async () => {
   const readme = await readFile(new URL('README.md', root), 'utf8');
   for (const port of config.ports) {
     assert.ok(readme.includes(`href="${port.url}"`));
     assert.ok(readme.includes(`src="./${port.asset}"`));
     assert.ok(readme.includes(`${port.role}: ${port.name} — ${port.signals.join(', ')}`));
   }
-  assert.equal((readme.match(/data-port="\d{2}"/g) ?? []).length, 5);
+  assert.ok(readme.includes('href="https://github.com/utkucaglar/TreePipe-Project"'));
+  assert.ok(readme.includes('data-port="06"'));
+  assert.equal((readme.match(/data-port="\d{2}"/g) ?? []).length, 6);
 });
 
 test('README contains external I/O and excludes generic profile widgets', async () => {
