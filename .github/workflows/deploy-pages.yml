@@ -35,8 +35,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_USERNAME: utkucaglar
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
       - name: Upload backplane artifact
         uses: actions/upload-pages-artifact@v3
         with:
