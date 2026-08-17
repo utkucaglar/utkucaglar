@@ -5,17 +5,17 @@ import { readFile } from 'node:fs/promises';
 const root = new URL('../', import.meta.url);
 const config = JSON.parse(await readFile(new URL('profile.config.json', root), 'utf8'));
 
-test('README contains the approved identity and one local hero', async () => {
+test('README contains the approved identity and one Pages-hosted hero', async () => {
   const readme = await readFile(new URL('README.md', root), 'utf8');
   assert.ok(readme.includes(config.identity.name));
   assert.ok(readme.includes(config.identity.role));
-  assert.ok(readme.includes(`src="./${config.hero.file}"`));
+  assert.ok(readme.includes(`src="${config.hero.publicUrl}"`));
   assert.ok(readme.includes(`alt="${config.hero.alt}"`));
 });
 
 test('README hero opens the interactive backplane', async () => {
   const readme = await readFile(new URL('../README.md', import.meta.url), 'utf8');
-  assert.match(readme, new RegExp(`<a href="${config.interactive.url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}">\\s*<img width="100%" src="\\./${config.hero.file}`));
+  assert.match(readme, new RegExp(`<a href="${config.interactive.url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}">\\s*<img width="100%" src="${config.hero.publicUrl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`));
   assert.equal(config.hero.file, 'assets/project-backplane-cycle.webp');
   assert.equal(config.hero.sourceFile, 'assets/patent-assembly-greenprint-v2-six-port.webp');
 });

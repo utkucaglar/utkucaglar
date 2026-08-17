@@ -1,4 +1,4 @@
-import { mkdtemp, rm } from 'node:fs/promises';
+import { copyFile, mkdtemp, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { spawn } from 'node:child_process';
@@ -9,6 +9,7 @@ import { PORTS } from '../backplane/ports.js';
 const root = resolve(import.meta.dirname, '..');
 const sourceFile = resolve(root, 'assets/patent-assembly-greenprint-v2-six-port.webp');
 const outputFile = resolve(root, 'assets/project-backplane-cycle.webp');
+const deployedFile = resolve(root, 'backplane/assets/project-backplane-cycle.webp');
 const phasesPerPort = 3;
 const frameDelayMs = 1000;
 const frameWidth = 1440;
@@ -93,6 +94,7 @@ try {
     '-loop', '0',
     outputFile,
   ]);
+  await copyFile(outputFile, deployedFile);
 } finally {
   await rm(framesDirectory, { recursive: true, force: true });
 }
