@@ -33,7 +33,7 @@ jobs:
       - name: Refresh contribution matrix
         run: npm run generate:contributions
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PROFILE_CONTRIBUTIONS_TOKEN }}
           GITHUB_USERNAME: utkucaglar
       - name: Upload backplane artifact
         uses: actions/upload-pages-artifact@v3

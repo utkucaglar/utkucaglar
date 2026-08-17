@@ -13,7 +13,8 @@ test('Pages workflow publishes only the backplane directory from main', async ()
   assert.match(workflow, /concurrency:\s*\n\s*group:\s*pages\s*\n\s*cancel-in-progress:\s*true/);
   assert.doesNotMatch(workflow, /actions\/configure-pages@/);
   assert.match(workflow, /npm run generate:contributions/);
-  assert.match(workflow, /GITHUB_TOKEN:\s*\$\{\{\s*secrets\.GITHUB_TOKEN\s*\}\}/);
+  assert.match(workflow, /GITHUB_TOKEN:\s*\$\{\{\s*secrets\.PROFILE_CONTRIBUTIONS_TOKEN\s*\}\}/);
+  assert.doesNotMatch(workflow, /GITHUB_TOKEN:\s*\$\{\{\s*secrets\.GITHUB_TOKEN\s*\}\}/);
   assert.match(workflow, /GITHUB_USERNAME:\s*utkucaglar/);
   assert.ok(workflow.indexOf('npm run generate:contributions') < workflow.indexOf('actions/upload-pages-artifact@v3'));
   assert.match(workflow, /environment:\s*\n\s*name:\s*github-pages\s*\n\s*url:\s*\$\{\{\s*steps\.deployment\.outputs\.page_url\s*\}\}/);

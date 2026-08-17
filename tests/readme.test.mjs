@@ -33,8 +33,7 @@ test('README places the contribution matrix before identity and hardware assembl
   assert.notEqual(matrixIndex, -1);
   assert.ok(matrixIndex < identityIndex);
   assert.ok(identityIndex < assemblyIndex);
-  assert.ok(readme.includes('src="assets/contribution-matrix.svg"'));
-  assert.doesNotMatch(readme, /src="https:\/\/utkucaglar\.github\.io\/utkucaglar\/assets\/contribution-matrix\.svg"/);
+  assert.ok(readme.includes('src="https://utkucaglar.github.io/utkucaglar/assets/contribution-matrix.svg"'));
   assert.ok(readme.includes('alt="Green technical contribution matrix for the last 365 days."'));
 });
 

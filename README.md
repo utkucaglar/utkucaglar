@@ -1,4 +1,4 @@
-<a href="https://github.com/utkucaglar?tab=overview" data-panel="contributions"><img width="100%" src="assets/contribution-matrix.svg" alt="Green technical contribution matrix for the last 365 days."></a>
+<a href="https://github.com/utkucaglar?tab=overview" data-panel="contributions"><img width="100%" src="https://utkucaglar.github.io/utkucaglar/assets/contribution-matrix.svg" alt="Green technical contribution matrix for the last 365 days."></a>
 
 <br>
 

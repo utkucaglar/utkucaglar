@@ -26,12 +26,12 @@ test('manifest locks the approved system identity', async () => {
   });
 });
 
-test('manifest defines the repository-hosted contribution matrix', async () => {
+test('manifest defines the Pages-hosted contribution matrix', async () => {
   const config = await loadConfig();
   assert.deepEqual(config.contributions, {
     username: 'utkucaglar',
     asset: 'assets/contribution-matrix.svg',
-    publicAsset: 'assets/contribution-matrix.svg',
+    publicAsset: 'https://utkucaglar.github.io/utkucaglar/assets/contribution-matrix.svg',
     url: 'https://github.com/utkucaglar?tab=overview',
     alt: 'Green technical contribution matrix for the last 365 days.',
   });
