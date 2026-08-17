@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en" data-active-port="01">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>UÇ / Project Backplane</title>
+  <meta name="description" content="Inspect six repositories through an interactive patent-assembly backplane.">
+  <link rel="stylesheet" href="./backplane.css">
+</head>
+<body>
+  <main class="backplane-shell">
+    <header class="masthead">
+      <div>
+        <p class="kicker">UÇ / GREENPRINT · PATENT ASSEMBLY</p>
+        <h1>PROJECT BACKPLANE</h1>
+      </div>
+      <p class="status"><span aria-hidden="true"></span> DRAWING ACTIVE</p>
+    </header>
+
+    <section class="assembly-panel" aria-labelledby="assembly-title">
+      <h2 class="visually-hidden" id="assembly-title">Interactive project assembly</h2>
+      <div class="assembly-stage">
+        <svg class="assembly-drawing" viewBox="0 0 1942 809" role="img" aria-labelledby="drawing-title drawing-description" xmlns="http://www.w3.org/2000/svg">
+          <title id="drawing-title">Six-port project patent assembly</title>
+          <desc id="drawing-description">An exploded computer assembly. Select one of six numbered controls to illuminate a component and inspect its repository.</desc>
+          <defs>
+            <clipPath id="port-mask-01"><path d="M45 145 L230 45 L410 85 L490 170 L470 270 L245 340 L45 255 Z"/><circle cx="470" cy="70" r="58"/></clipPath>
+            <clipPath id="port-mask-02"><path d="M530 40 L1220 10 L1260 300 L1215 515 L1060 710 L705 700 L545 520 Z"/><circle cx="1325" cy="90" r="58"/></clipPath>
+            <clipPath id="port-mask-03"><path d="M75 590 L315 540 L415 635 L365 718 L135 728 L75 670 Z"/><circle cx="420" cy="575" r="58"/></clipPath>
+            <clipPath id="port-mask-04"><path d="M80 380 L330 350 L425 425 L395 505 L135 535 L75 480 Z"/><circle cx="82" cy="353" r="58"/></clipPath>
+            <clipPath id="port-mask-05"><path d="M1480 460 L1710 395 L1870 485 L1875 700 L1720 755 L1500 650 Z"/><circle cx="1520" cy="450" r="58"/></clipPath>
+            <clipPath id="port-mask-06"><path d="M1440 80 L1830 45 L1900 140 L1860 330 L1620 360 L1430 245 Z"/><circle cx="1850" cy="95" r="58"/></clipPath>
+          </defs>
+
+          <image class="assembly-image assembly-image--base" href="./assets/assembly.webp" width="1942" height="809"/>
+          <g class="routes" aria-hidden="true">
+            <path class="port-route is-active" data-port-route="01" pathLength="1" d="M1000 430 C800 350 600 250 280 210"/>
+            <path class="port-route" data-port-route="02" pathLength="1" d="M1000 430 C1090 350 1130 260 1070 190"/>
+            <path class="port-route" data-port-route="03" pathLength="1" d="M1000 430 C750 520 540 620 270 650"/>
+            <path class="port-route" data-port-route="04" pathLength="1" d="M1000 430 C680 430 480 440 250 445"/>
+            <path class="port-route" data-port-route="05" pathLength="1" d="M1000 430 C1250 460 1450 540 1680 575"/>
+            <path class="port-route" data-port-route="06" pathLength="1" d="M1000 430 C1250 380 1490 250 1660 180"/>
+          </g>
+          <image class="assembly-image assembly-image--layer is-active" data-port-layer="01" clip-path="url(#port-mask-01)" href="./assets/assembly.webp" width="1942" height="809"/>
+          <image class="assembly-image assembly-image--layer" data-port-layer="02" clip-path="url(#port-mask-02)" href="./assets/assembly.webp" width="1942" height="809"/>
+          <image class="assembly-image assembly-image--layer" data-port-layer="03" clip-path="url(#port-mask-03)" href="./assets/assembly.webp" width="1942" height="809"/>
+          <image class="assembly-image assembly-image--layer" data-port-layer="04" clip-path="url(#port-mask-04)" href="./assets/assembly.webp" width="1942" height="809"/>
+          <image class="assembly-image assembly-image--layer" data-port-layer="05" clip-path="url(#port-mask-05)" href="./assets/assembly.webp" width="1942" height="809"/>
+          <image class="assembly-image assembly-image--layer" data-port-layer="06" clip-path="url(#port-mask-06)" href="./assets/assembly.webp" width="1942" height="809"/>
+        </svg>
+
+        <div class="hotspot-layer" aria-label="Project ports">
+          <button class="port-hotspot" type="button" data-select-port="01" aria-label="Select port 01: NFC Link" aria-pressed="true" style="--hotspot-x: 24.2%; --hotspot-y: 8.3%;"><span>PORT_01</span></button>
+          <button class="port-hotspot" type="button" data-select-port="02" aria-label="Select port 02: CS445 Project" aria-pressed="false" style="--hotspot-x: 68.1%; --hotspot-y: 10.8%;"><span>PORT_02</span></button>
+          <button class="port-hotspot" type="button" data-select-port="03" aria-label="Select port 03: YÖK Akademik MCP" aria-pressed="false" style="--hotspot-x: 21.5%; --hotspot-y: 72.2%;"><span>PORT_03</span></button>
+          <button class="port-hotspot" type="button" data-select-port="04" aria-label="Select port 04: PixelVault" aria-pressed="false" style="--hotspot-x: 4.5%; --hotspot-y: 43.7%;"><span>PORT_04</span></button>
+          <button class="port-hotspot" type="button" data-select-port="05" aria-label="Select port 05: Battleship FPGA" aria-pressed="false" style="--hotspot-x: 78.4%; --hotspot-y: 55.1%;"><span>PORT_05</span></button>
+          <button class="port-hotspot" type="button" data-select-port="06" aria-label="Select port 06: TreePipe Project" aria-pressed="false" style="--hotspot-x: 95.6%; --hotspot-y: 10.5%;"><span>PORT_06</span></button>
+        </div>
+      </div>
+
+      <div class="instrument-strip" aria-live="polite">
+        <div class="port-register" aria-hidden="true">
+          <span>PORT</span>
+          <strong data-active-id>01</strong>
+        </div>
+        <div class="active-project">
+          <p class="instrument-label">ACTIVE POWER DOMAIN</p>
+          <p class="active-role" data-active-role>PLATFORM BOARD</p>
+          <p class="active-name" data-active-name>NFC_LINK</p>
+          <p class="active-signals" data-active-signals>TYPESCRIPT · REACT · SUPABASE</p>
+        </div>
+        <a class="repository-action" data-active-link aria-label="OPEN REPOSITORY" href="./" target="_blank" rel="noreferrer">OPEN REPOSITORY <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+
+    <footer class="drawing-notes">
+      <p>INPUT: CLICK / 1–6 / ← →</p>
+      <p>ASSEMBLY REF. UÇ–06</p>
+    </footer>
+  </main>
+  <script type="module" src="./backplane.js"></script>
+</body>
+</html>
